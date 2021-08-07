@@ -1,0 +1,27 @@
+﻿@model WebTareas.Models.IndexLogin
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Login | Tasks Organizer</title>
+    </head>
+    <body>
+        <div>
+            @using (Html.BeginForm("Login", "Home"))
+            {
+                @Html.LabelFor(m => m.User, "User") <span> : </span> @Html.EditorFor(m => m.User)
+                <br />
+                @Html.LabelFor(m => m.Password, "Password") <span> : </span> @Html.EditorFor(m => m.Password)
+                @Html.HiddenFor(m => m.Attempts)
+                <br /><br />
+                <input type="submit" value="Login" />
+            }
+        </div>
+
+        <div>
+            @Html.ValidationSummary()
+        </div>
+    </body>
+</html>

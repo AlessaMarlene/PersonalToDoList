@@ -1,0 +1,68 @@
+﻿@model WebTareas.Models.TaskInfo
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Home | Tasks Organizer</title>
+    </head>
+    <body>
+        <header>
+            <h2>Tasks Organizer</h2>
+        </header>
+
+        <div>
+            <section>
+                <div>
+                    @using (Html.BeginForm("NewTask", "TaskOrganizer"))
+                    {
+                        @Html.LabelFor(m => m.Id, "ID") <span> : </span> @Html.DisplayFor(m => m.Id, "Id")
+
+                        @Html.LabelFor(m => m.Name, "Name") <span> : </span> @Html.EditorFor(m => m.Name, "Name")
+                        <br />
+                        @Html.LabelFor(m => m.Description, "Description") <span> : </span> @Html.EditorFor(m => m.Description, "Description")
+                        <br /><br />
+                        <input type="submit" value="Add new task" />
+                    }
+                </div>
+            </section>
+                
+            <section>
+                @if (Model.OngoingTasks.Count > 0)
+                {
+                    @foreach (var task in Model.OngoingTasks)
+                    {
+                        <table>
+                            <tr>
+                                <td>@task.Id</td>
+                                <td>@task.Name</td>
+                            </tr>
+                            <tr>
+                                <td>@task.Description</td>
+                            </tr>
+                        </table>
+                    }
+                }
+            </section>
+
+            <section>
+                @if (Model.CompletedTasks.Count > 0)
+                {
+                    @foreach (var task in Model.CompletedTasks)
+                    {
+                        <table>
+                            <tr>
+                                <td>@task.Id</td>
+                                <td>@task.Name</td>
+                            </tr>
+                            <tr>
+                                <td>@task.Description</td>
+                            </tr>
+                        </table>
+                    }
+                }
+            </section>
+        </div>
+    </body>
+</html>
