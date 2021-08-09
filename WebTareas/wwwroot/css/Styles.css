@@ -1,0 +1,12 @@
+﻿body{
+    display:flex;
+    justify-content:center;
+}
+
+#login{
+    width:25%
+}
+
+.message-error {
+    color: red
+}

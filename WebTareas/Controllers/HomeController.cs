@@ -22,7 +22,7 @@ namespace WebTareas.Controllers
         {
             if (ModelState.IsValid)
             {
-                //model.Attempts = 0;
+                //model.Attempts = 0
                 TaskInfo modelBoard = new TaskInfo();
 
                 using (TasksDataBaseContext context = new TasksDataBaseContext())

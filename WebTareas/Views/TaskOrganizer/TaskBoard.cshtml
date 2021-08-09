@@ -18,13 +18,15 @@
                     @using (Html.BeginForm("NewTask", "TaskOrganizer"))
                     {
                         @Html.LabelFor(m => m.Id, "ID") <span> : </span> @Html.DisplayFor(m => m.Id, "Id")
-
+                        <br />
                         @Html.LabelFor(m => m.Name, "Name") <span> : </span> @Html.EditorFor(m => m.Name, "Name")
                         <br />
                         @Html.LabelFor(m => m.Description, "Description") <span> : </span> @Html.EditorFor(m => m.Description, "Description")
                         <br /><br />
                         <input type="submit" value="Add new task" />
                     }
+
+                    @Html.ValidationSummary()
                 </div>
             </section>
                 

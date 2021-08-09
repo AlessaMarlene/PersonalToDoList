@@ -5,23 +5,33 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width" />
+        <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="~/css/Styles.css" rel="stylesheet" type="text/css"/>
         <title>Login | Tasks Organizer</title>
     </head>
     <body>
-        <div>
-            @using (Html.BeginForm("Login", "Home"))
-            {
-                @Html.LabelFor(m => m.User, "User") <span> : </span> @Html.EditorFor(m => m.User)
-                <br />
-                @Html.LabelFor(m => m.Password, "Password") <span> : </span> @Html.EditorFor(m => m.Password)
-                @Html.HiddenFor(m => m.Attempts)
-                <br /><br />
-                <input type="submit" value="Login" />
-            }
-        </div>
+        <div class="container">
+            <div class="row">
+                <h2>To Do List</h2>
+            </div>
 
-        <div>
-            @Html.ValidationSummary()
+            <div class="row">
+                @using (Html.BeginForm("Login", "Home"))
+                {
+                    @Html.LabelFor(m => m.User, "User", new { @class = "form-label" })<br />
+                    @Html.EditorFor(m => m.User, new { htmlAttributes = new { @class = "form-control" } })
+                    <br /><br />
+                    @Html.LabelFor(m => m.Password, "Password", new { @class = "form-label" })<br />
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                    @Html.HiddenFor(m => m.Attempts)
+                    <br /><br />
+                    <input type="submit" value="Login" class="btn btn-primary" />
+                }
+            </div>
+
+            <div class="row form-text message-error">
+                @Html.ValidationSummary()
+            </div>
         </div>
     </body>
 </html>

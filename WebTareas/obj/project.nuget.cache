@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "uEqacqTfPAtFQt615BL3q17OEAgdYWR3Uo4mKQIG3Ns87H/chNaNrULuBpxls9pJHovw+CpGm7V71+0R9E/C3A==",
+  "dgSpecHash": "Y3+aQEascZtr1xhP94uIjcFTum/Jd0MAj2pspdcGJZO65+Q0+lDnGGztd4tY8tAGTJ2YgcDAU5LT+PLiK7QJMQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Land_\\Desktop\\Marlene\\WebTareas\\WebTareas\\WebTareas.csproj",
+  "projectFilePath": "C:\\Users\\Land_\\Desktop\\ISTEA\\Proyectos\\PersonalToDoList\\WebTareas\\WebTareas.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Land_\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Land_\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
