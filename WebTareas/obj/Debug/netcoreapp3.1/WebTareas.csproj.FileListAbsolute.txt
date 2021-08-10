@@ -147,3 +147,4 @@ C:\Users\Land_\Desktop\ISTEA\Proyectos\PersonalToDoList\WebTareas\obj\Debug\netc
 C:\Users\Land_\Desktop\ISTEA\Proyectos\PersonalToDoList\WebTareas\obj\Debug\netcoreapp3.1\WebTareas.pdb
 C:\Users\Land_\Desktop\ISTEA\Proyectos\PersonalToDoList\WebTareas\obj\Debug\netcoreapp3.1\WebTareas.genruntimeconfig.cache
 C:\Users\Land_\Desktop\ISTEA\Proyectos\PersonalToDoList\WebTareas\bin\Debug\netcoreapp3.1\libman.json
+C:\Users\Land_\Desktop\Marlene\WebTareas\WebTareas\bin\Debug\netcoreapp3.1\libman.json

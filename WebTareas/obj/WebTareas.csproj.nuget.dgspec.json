@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Land_\\Desktop\\ISTEA\\Proyectos\\PersonalToDoList\\WebTareas\\WebTareas.csproj": {}
+    "C:\\Users\\Land_\\Desktop\\Marlene\\WebTareas\\WebTareas\\WebTareas.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Land_\\Desktop\\ISTEA\\Proyectos\\PersonalToDoList\\WebTareas\\WebTareas.csproj": {
+    "C:\\Users\\Land_\\Desktop\\Marlene\\WebTareas\\WebTareas\\WebTareas.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Land_\\Desktop\\ISTEA\\Proyectos\\PersonalToDoList\\WebTareas\\WebTareas.csproj",
+        "projectUniqueName": "C:\\Users\\Land_\\Desktop\\Marlene\\WebTareas\\WebTareas\\WebTareas.csproj",
         "projectName": "WebTareas",
-        "projectPath": "C:\\Users\\Land_\\Desktop\\ISTEA\\Proyectos\\PersonalToDoList\\WebTareas\\WebTareas.csproj",
+        "projectPath": "C:\\Users\\Land_\\Desktop\\Marlene\\WebTareas\\WebTareas\\WebTareas.csproj",
         "packagesPath": "C:\\Users\\Land_\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Land_\\Desktop\\ISTEA\\Proyectos\\PersonalToDoList\\WebTareas\\obj\\",
+        "outputPath": "C:\\Users\\Land_\\Desktop\\Marlene\\WebTareas\\WebTareas\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
           "C:\\Users\\Land_\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -49,6 +53,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[5.0.8, )"
+            },
+            "bootstrap": {
+              "target": "Package",
+              "version": "[5.1.0, )"
             }
           },
           "imports": [
@@ -69,7 +77,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
         }
       }
     }

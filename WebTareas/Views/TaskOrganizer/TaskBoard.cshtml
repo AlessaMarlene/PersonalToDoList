@@ -5,66 +5,88 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width" />
+        <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="~/css/Styles.css" rel="stylesheet" type="text/css"/>
         <title>Home | Tasks Organizer</title>
     </head>
     <body>
-        <header>
-            <h2>Tasks Organizer</h2>
-        </header>
+        <div class="container">
+            <header class="row">
+                <h2 class="text-center">Tasks Organizer</h2>
+            </header>
 
-        <div>
-            <section>
-                <div>
-                    @using (Html.BeginForm("NewTask", "TaskOrganizer"))
-                    {
-                        @Html.LabelFor(m => m.Id, "ID") <span> : </span> @Html.DisplayFor(m => m.Id, "Id")
-                        <br />
-                        @Html.LabelFor(m => m.Name, "Name") <span> : </span> @Html.EditorFor(m => m.Name, "Name")
-                        <br />
-                        @Html.LabelFor(m => m.Description, "Description") <span> : </span> @Html.EditorFor(m => m.Description, "Description")
-                        <br /><br />
-                        <input type="submit" value="Add new task" />
-                    }
+            <div class="row m-4">
+                <section class="col-4 p-2">
+                    <div class="row">
+                        <h4 class="text-center">Modify or Add new task</h4>
+                    </div>
 
-                    @Html.ValidationSummary()
-                </div>
-            </section>
-                
-            <section>
-                @if (Model.OngoingTasks.Count > 0)
-                {
-                    @foreach (var task in Model.OngoingTasks)
-                    {
-                        <table>
-                            <tr>
-                                <td>@task.Id</td>
-                                <td>@task.Name</td>
-                            </tr>
-                            <tr>
-                                <td>@task.Description</td>
-                            </tr>
-                        </table>
-                    }
-                }
-            </section>
+                    <div class="row">
+                        @using (Html.BeginForm("NewTask", "TaskOrganizer"))
+                        {
+                            @Html.LabelFor(m => m.Id, "Task #", new { @class = "form-label" })
+                            @Html.DisplayFor(m => m.Id)<br />
+                            @Html.LabelFor(m => m.Name, "Name", new { @class = "form-label" })<br />
+                            @Html.EditorFor(m => m.Name, new { htmlAttributes = new { @class = "form-control" } })<br />
+                            @Html.LabelFor(m => m.Description, "Description", new { @class = "form-label" })<br />
+                            @Html.EditorFor(m => m.Description, new { htmlAttributes = new { @class = "form-control" } })<br /><br />
+                            <input type="submit" value="Add/Modify task"  class="btn btn-primary"/>
+                        }
+                    </div>
 
-            <section>
-                @if (Model.CompletedTasks.Count > 0)
-                {
-                    @foreach (var task in Model.CompletedTasks)
-                    {
-                        <table>
-                            <tr>
-                                <td>@task.Id</td>
-                                <td>@task.Name</td>
-                            </tr>
-                            <tr>
-                                <td>@task.Description</td>
-                            </tr>
-                        </table>
-                    }
-                }
-            </section>
+                    <div class="row form-text text-danger">
+                        @Html.ValidationSummary()
+                    </div>
+                </section>
+
+                <section class="col-4 p-2">
+                    <div class="row">
+                        <h4 class="text-center">To do</h4>
+                    </div>
+
+                    <div class="row p-3">
+                        @if (Model.OngoingTasks.Count > 0)
+                        {
+                            <table class="table">
+                                @foreach (var task in Model.OngoingTasks)
+                                {
+                                    <tr class="table-primary">
+                                        <th>#@task.Id  @task.Name</th>
+                                    </tr>
+
+                                    <tr class="table-light">
+                                        <td>@task.Description</td>
+                                    </tr>
+                                }
+                            </table>
+                        }
+                    </div>
+                </section>
+
+                <section class="col-4 p-2">
+                    <div class="row">
+                        <h4 class="text-center">Completed</h4>
+                    </div>
+
+                    <div class="row p-3">
+                        @if (Model.CompletedTasks.Count > 0)
+                        {
+                            <table class="table">
+                                @foreach (var task in Model.CompletedTasks)
+                                {
+                                    <tr class="table-primary">
+                                        <th>#@task.Id  @task.Name</th>
+                                    </tr>
+
+                                    <tr class="table-light">
+                                        <td>@task.Description</td>
+                                    </tr>
+                                }
+                            </table>
+                        }
+                    </div>
+                </section>
+            </div>
         </div>
     </body>
 </html>

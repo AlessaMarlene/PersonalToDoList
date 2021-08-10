@@ -12,15 +12,32 @@ namespace WebTareas.Controllers
     {
         public IActionResult Index()
         {
-            return View("TaskBoard");
+            TaskInfo model = new TaskInfo();
+            FillLists(model);
+
+            return View("TaskBoard", model);
+        }
+
+        private void FillLists(TaskInfo model)
+        {
+            using (TasksDataBaseContext context = new TasksDataBaseContext())
+            {
+                List<DAL.Task> tasks = context.Tasks.ToList();
+
+                foreach (DAL.Task task in tasks)
+                {
+                    if (!task.Completed) model.OngoingTasks.Add(task);
+                    else model.CompletedTasks.Add(task);
+                }
+            }
         }
 
         public IActionResult NewTask(TaskInfo model)
         {
-            using(TasksDataBaseContext context = new TasksDataBaseContext())
-            {
-                List<DAL.Task> taskList = context.Tasks.ToList();
+            FillLists(model);
 
+            using (TasksDataBaseContext context = new TasksDataBaseContext())
+            {
                 DAL.Task newTask = new DAL.Task
                 {
                     Name = model.Name,
@@ -28,11 +45,11 @@ namespace WebTareas.Controllers
                     Completed = false
                 };
 
-                taskList.Add(newTask);
-                context.SaveChanges();
+                context.Tasks.Add(newTask);
+                int changes = context.SaveChanges();
                 model.Id = newTask.Id;
                 
-                if(model.Id != null) model.OngoingTasks.Add(newTask);
+                if(changes > 0) model.OngoingTasks.Add(newTask);
             }
 
             return View("TaskBoard", model);

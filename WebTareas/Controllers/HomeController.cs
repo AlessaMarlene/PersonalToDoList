@@ -22,19 +22,7 @@ namespace WebTareas.Controllers
         {
             if (ModelState.IsValid)
             {
-                //model.Attempts = 0
-                TaskInfo modelBoard = new TaskInfo();
-
-                using (TasksDataBaseContext context = new TasksDataBaseContext())
-                {
-                    foreach (DAL.Task task in context.Tasks)
-                    {
-                        if (!task.Completed) modelBoard.OngoingTasks.Add(task);
-                        else modelBoard.CompletedTasks.Add(task);
-                    }
-                }
-
-                return View("Views/TaskOrganizer/TaskBoard.cshtml", modelBoard);
+                return RedirectToAction("Index", "TaskOrganizer");
             }
 
             model.Attempts ??= 0;
@@ -47,7 +35,7 @@ namespace WebTareas.Controllers
 
             ModelState.Remove("Attempts");
 
-            return RedirectToAction("Controllers/TaskOrganizerController.cs", model);
+            return View("IndexLogin", model);
         }
     }
 }
