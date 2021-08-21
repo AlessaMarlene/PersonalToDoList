@@ -22,7 +22,9 @@ namespace WebTareas.Controllers
         {
             if (ModelState.IsValid)
             {
-                return RedirectToAction("Index", "TaskOrganizer");
+                int id = FindUser(model);
+
+                return RedirectToAction("Index", "TaskOrganizer", new { UserID = id });
             }
 
             model.Attempts ??= 0;
@@ -36,6 +38,33 @@ namespace WebTareas.Controllers
             ModelState.Remove("Attempts");
 
             return View("IndexLogin", model);
+        }
+
+        private int FindUser(IndexLogin model)
+        {
+            int id = 0;
+
+            using (TasksDataBaseContext context = new TasksDataBaseContext())
+            {
+                List<User> users = context.Users.ToList();
+                User user = context.Users.FirstOrDefault(u => u.UserName == model.User);
+
+                if (user == null)
+                {
+                    User newUser = new User
+                    {
+                        UserName = model.User,
+                        Password = model.Password
+                    };
+
+                    context.Users.Add(newUser);
+                    context.SaveChanges();
+                    id = newUser.UserId;
+                }
+                else id = user.UserId;
+            }
+
+            return id;
         }
     }
 }

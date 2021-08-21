@@ -11,14 +11,19 @@ namespace WebTareas.DAL
     public partial class Task
     {
         [Key]
-        [Column("ID")]
-        public int Id { get; set; }
+        [Column("TaskID")]
+        public int TaskId { get; set; }
+        [Column("UserID")]
+        public int UserId { get; set; }
         [Required]
         [StringLength(15)]
         public string Name { get; set; }
-        [Required]
         [StringLength(50)]
         public string Description { get; set; }
         public bool Completed { get; set; }
+
+        [ForeignKey(nameof(UserId))]
+        [InverseProperty("Tasks")]
+        public virtual User User { get; set; }
     }
 }

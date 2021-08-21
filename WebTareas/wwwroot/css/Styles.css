@@ -1,1 +1,14 @@
-﻿
+﻿#firstContainer {
+    background: url("../Images/background.png") no-repeat;
+    background-size:cover;
+    background-attachment:fixed;
+}
+
+#logoutLink {
+    color: #212529;
+    text-decoration:none;
+}
+
+#linkSize{
+    font-size:small;
+}

@@ -8,7 +8,10 @@ namespace WebTareas.Models
 {
     public class IndexLogin
     {
+        public int? UserId { set; get; }
+
         [Required(ErrorMessage = "{0} name is required.")]
+        [StringLength(10, ErrorMessage = "{0} must have {1} characters maximum.")]
         public string User { set; get; }
 
         [Required(ErrorMessage = "{0} is required.")]

@@ -1,39 +1,34 @@
 ﻿@model WebTareas.Models.IndexLogin
 
-<!DOCTYPE html>
+@{
+    ViewBag.Title = "Login | Task Organizer";
+}
 
-<html>
-    <head>
-        <meta name="viewport" content="width=device-width" />
-        <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
-        <link href="~/css/Styles.css" rel="stylesheet" type="text/css"/>
-        <title>Login | Tasks Organizer</title>
-    </head>
-    <body>
-        <div class="container d-flex justify-content-center">
-            <div class="col-4">
-                <div>
-                    <h2 class="text-center">To Do List</h2>
-                </div>
-
-                <div class="row">
-                    @using (Html.BeginForm("Login", "Home"))
-                    {
-                        @Html.LabelFor(m => m.User, "User", new { @class = "form-label" })<br />
-                        @Html.EditorFor(m => m.User, new { htmlAttributes = new { @class = "form-control" } })
-                        <br /><br />
-                        @Html.LabelFor(m => m.Password, "Password", new { @class = "form-label" })<br />
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        @Html.HiddenFor(m => m.Attempts)
-                        <br /><br />
-                        <input type="submit" value="Login" class="btn btn-primary" />
-                    }
-                </div>
-
-                <div class="row form-text text-danger">
-                    @Html.ValidationSummary()
-                </div>
+<div class="container vh-100">
+    <div class="row justify-content-center pt-5">
+        <header>
+            <div>
+                <h2 class="text-center fw-bold">To Do List</h2>
             </div>
+        </header>
+
+        <div class="row w-50">
+            @using (Html.BeginForm("Login", "Home"))
+            {
+                @Html.LabelFor(m => m.User, "User", new { @class = "form-label" })<br />
+                @Html.EditorFor(m => m.User, new { htmlAttributes = new { @class = "form-control" } })
+                <br /><br />
+                @Html.LabelFor(m => m.Password, "Password", new { @class = "form-label" })<br />
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                @Html.HiddenFor(m => m.Attempts)
+                <br /><br />
+                
+                <input type="submit" value="Login" class="px-5 btn"/>
+            }
         </div>
-    </body>
-</html>
+
+        <div class="row form-text text-danger">
+            @Html.ValidationSummary()
+        </div>
+    </div>
+</div>

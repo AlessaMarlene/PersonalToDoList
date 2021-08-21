@@ -1,92 +1,120 @@
 ﻿@model WebTareas.Models.TaskInfo
 
-<!DOCTYPE html>
+@{
+    ViewBag.Title = "To Do | Task Organizer";
+}
 
-<html>
-    <head>
-        <meta name="viewport" content="width=device-width" />
-        <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
-        <link href="~/css/Styles.css" rel="stylesheet" type="text/css"/>
-        <title>Home | Tasks Organizer</title>
-    </head>
-    <body>
-        <div class="container">
-            <header class="row">
-                <h2 class="text-center">Tasks Organizer</h2>
-            </header>
-
-            <div class="row m-4">
-                <section class="col-4 p-2">
-                    <div class="row">
-                        <h4 class="text-center">Modify or Add new task</h4>
-                    </div>
-
-                    <div class="row">
-                        @using (Html.BeginForm("NewTask", "TaskOrganizer"))
-                        {
-                            @Html.LabelFor(m => m.Id, "Task #", new { @class = "form-label" })
-                            @Html.DisplayFor(m => m.Id)<br />
-                            @Html.LabelFor(m => m.Name, "Name", new { @class = "form-label" })<br />
-                            @Html.EditorFor(m => m.Name, new { htmlAttributes = new { @class = "form-control" } })<br />
-                            @Html.LabelFor(m => m.Description, "Description", new { @class = "form-label" })<br />
-                            @Html.EditorFor(m => m.Description, new { htmlAttributes = new { @class = "form-control" } })<br /><br />
-                            <input type="submit" value="Add/Modify task"  class="btn btn-primary"/>
-                        }
-                    </div>
-
-                    <div class="row form-text text-danger">
-                        @Html.ValidationSummary()
-                    </div>
-                </section>
-
-                <section class="col-4 p-2">
-                    <div class="row">
-                        <h4 class="text-center">To do</h4>
-                    </div>
-
-                    <div class="row p-3">
-                        @if (Model.OngoingTasks.Count > 0)
-                        {
-                            <table class="table">
-                                @foreach (var task in Model.OngoingTasks)
-                                {
-                                    <tr class="table-primary">
-                                        <th>#@task.Id  @task.Name</th>
-                                    </tr>
-
-                                    <tr class="table-light">
-                                        <td>@task.Description</td>
-                                    </tr>
-                                }
-                            </table>
-                        }
-                    </div>
-                </section>
-
-                <section class="col-4 p-2">
-                    <div class="row">
-                        <h4 class="text-center">Completed</h4>
-                    </div>
-
-                    <div class="row p-3">
-                        @if (Model.CompletedTasks.Count > 0)
-                        {
-                            <table class="table">
-                                @foreach (var task in Model.CompletedTasks)
-                                {
-                                    <tr class="table-primary">
-                                        <th>#@task.Id  @task.Name</th>
-                                    </tr>
-
-                                    <tr class="table-light">
-                                        <td>@task.Description</td>
-                                    </tr>
-                                }
-                            </table>
-                        }
-                    </div>
-                </section>
-            </div>
+<div class="container-fluid">
+    <header class="row pt-5 d-flex justify-content-end">
+        <div class="col-4">
+            <h1 class="text-center fw-bold">Task Organizer</h1>
         </div>
-    </body>
-</html>
+
+        <div class="col-4 d-flex justify-content-end">
+            <button class="my-1 btn">
+                @Html.ActionLink("Logout", "Logout", "TaskOrganizer", null, new { @id = "logoutLink" })
+            </button>
+        </div>
+    </header>
+
+    <hr />
+
+    <div class="row m-4">
+        <section class="col-4 p-2">
+            <div>
+                <h4 class="text-center">Modify or Add new task</h4>
+            </div>
+
+            <div class="p-3">
+                @using (Html.BeginForm("PersistTask", "TaskOrganizer"))
+                {
+                    @Html.LabelFor(m => m.Id, "Task #", new { @class = "form-label" })
+                    @Html.DisplayFor(m => m.Id)
+                    @Html.HiddenFor(m => m.Id)<br />
+                    @Html.LabelFor(m => m.Name, "Name", new { @class = "form-label" })<br />
+                    @Html.EditorFor(m => m.Name, new { htmlAttributes = new { @class = "form-control" } })<br />
+                    @Html.LabelFor(m => m.Description, "Description", new { @class = "form-label" })<br />
+                    @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+                    @Html.HiddenFor(m => m.UserId)
+                    <br /><br />
+                    <input type="submit" value="Add" name="addButton" class="btn" />
+
+                    <input type="submit" value="Modify" class="btn"
+                     @{ if (string.IsNullOrEmpty((string)TempData["ShowButton"])) { <text> disabled="disabled" </text>  } } />
+                }
+            </div>
+
+            <div class="form-text text-danger">
+                @Html.ValidationSummary()
+            </div>
+        </section>
+
+        <section class="col-4">
+            <div>
+                <h4 class="text-center">To do</h4>
+            </div>
+
+            <div>
+                @if (Model.OngoingTasks.Count > 0)
+                {
+                    @foreach (var task in Model.OngoingTasks)
+                    {
+                        <article class="card opacity-75 mb-3">
+                            <div class="d-flex justify-content-between card-header">
+                                <div class="col-8 card-title">
+                                    #@task.TaskId
+                                    @task.Name
+                                </div>
+
+                                <div class="col-4">
+                                    <div>
+                                        @Html.ActionLink("Select to modify", "SelectTask", "TaskOrganizer", new { TaskID = task.TaskId }, new { @id = "linkSize" })
+                                    </div>
+
+                                    <div>
+                                        @Html.ActionLink("Mark as completed", "MarkCompleted", "TaskOrganizer", new { TaskID = task.TaskId }, new { @id = "linkSize" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-text p-3">
+                                @task.Description
+                            </div>
+                        </article>
+                    }
+                }
+            </div>
+        </section>
+
+        <section class="col-4">
+            <div>
+                <h4 class="text-center">Completed</h4>
+            </div>
+
+            <div>
+                @if (Model.CompletedTasks.Count > 0)
+                {
+                    @foreach (var task in Model.CompletedTasks)
+                    {
+                        <article class="card opacity-75 mb-3">
+                            <div class="d-flex justify-content-between card-header">
+                                <div class="col-9 card-title">
+                                    #@task.TaskId
+                                    @task.Name
+                                </div>
+
+                                <div class="col-3">
+                                    @Html.ActionLink("Delete task", "DeleteTask", "TaskOrganizer", new { TaskID = task.TaskId })
+                                </div>
+                            </div>
+
+                            <div class="card-text p-3">
+                                @task.Description
+                            </div>
+                        </article>
+                    }
+                }
+            </div>
+        </section>
+    </div>
+</div>

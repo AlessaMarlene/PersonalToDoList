@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "mvNFo8If7oSNjO094vuU79JZQ4i/h+LBcfzQUV+qK6PvZJ/HqPQhAmnQn220JPzg9XFkJj1PkLS8IvX4GKl1/g==",
+  "dgSpecHash": "IVM9OW44qFAnRd8CQ8S+wU6dDDQWs9jyq1ay03/6ON1ngeaaXXnbxK0U4MNZaF+G6Pm0vP4o0ayZv08SCjXQGw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Land_\\Desktop\\Marlene\\WebTareas\\WebTareas\\WebTareas.csproj",
+  "projectFilePath": "C:\\Users\\Land_\\Desktop\\ISTEA\\Proyectos\\PersonalToDoList\\WebTareas\\WebTareas.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Land_\\.nuget\\packages\\bootstrap\\5.1.0\\bootstrap.5.1.0.nupkg.sha512",
     "C:\\Users\\Land_\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",

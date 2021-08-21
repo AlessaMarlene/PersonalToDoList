@@ -11,13 +11,16 @@ namespace WebTareas.Models
     {
         public int? Id { set; get; }
 
+        public int UserId { set; get; }
+
         [Required(ErrorMessage = "A {0} is required")]
         [StringLength(15, ErrorMessage = "{0} must have {1} characters maximum.")]
         public string Name { set; get; }
 
-        [Required(ErrorMessage = "A {0} is required")]
         [StringLength(50, ErrorMessage = "{0} must have {1} characters maximum.")]
         public string Description { set; get; }
+
+        public bool Completed { set; get; }
 
         public List<DAL.Task> OngoingTasks { set; get; }
 
@@ -27,6 +30,7 @@ namespace WebTareas.Models
         {
             this.OngoingTasks = new List<DAL.Task>();
             this.CompletedTasks = new List<DAL.Task>();
+            this.Completed = false;
         }
     }
 }
